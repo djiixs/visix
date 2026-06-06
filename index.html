@@ -110,41 +110,65 @@
     ═══════════════════════════════════════════════ */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 6rem 1.5rem 4rem;
-      overflow: hidden;
+      padding: 26rem 1.5rem 3rem;
     }
 
     /* Aurora glows */
+    @keyframes aurora-float-1 {
+      0%   { transform: translateX(-50%) translateY(0px) scale(1); }
+      25%  { transform: translateX(-42%) translateY(-80px) scale(1.15); }
+      50%  { transform: translateX(-58%) translateY(60px) scale(0.88); }
+      75%  { transform: translateX(-46%) translateY(-40px) scale(1.1); }
+      100% { transform: translateX(-50%) translateY(0px) scale(1); }
+    }
+    @keyframes aurora-float-2 {
+      0%   { transform: translate(0px, 0px) scale(1); }
+      25%  { transform: translate(90px, -80px) scale(1.18); }
+      50%  { transform: translate(50px, 70px) scale(0.85); }
+      75%  { transform: translate(-60px, -30px) scale(1.12); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    @keyframes aurora-float-3 {
+      0%   { transform: translate(0px, 0px) scale(1); }
+      25%  { transform: translate(-80px, 70px) scale(1.14); }
+      50%  { transform: translate(-40px, -90px) scale(0.87); }
+      75%  { transform: translate(70px, 40px) scale(1.1); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+
     .aurora {
       position: absolute;
       border-radius: 50%;
       filter: blur(120px);
       pointer-events: none;
+      will-change: transform;
     }
     .aurora-1 {
       width: 700px; height: 700px;
       top: -180px; left: 50%;
-      transform: translateX(-50%);
       background: radial-gradient(circle, rgba(192,80,16,0.55) 0%, rgba(124,58,237,0.35) 50%, transparent 75%);
       mix-blend-mode: screen;
+      animation: aurora-float-1 6s ease-in-out infinite;
     }
     .aurora-2 {
       width: 500px; height: 500px;
       top: 5%; left: -10%;
       background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 70%);
       mix-blend-mode: screen;
+      animation: aurora-float-2 7s ease-in-out infinite;
     }
     .aurora-3 {
       width: 500px; height: 500px;
       top: 5%; right: -10%;
       background: radial-gradient(circle, rgba(14,165,233,0.35) 0%, transparent 70%);
       mix-blend-mode: screen;
+      animation: aurora-float-3 8s ease-in-out infinite;
     }
 
     .hero-surtitre {
@@ -160,17 +184,20 @@
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 7vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1.08;
+      font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.25;
       letter-spacing: -0.02em;
-      max-width: 860px;
-      background: linear-gradient(175deg, #ffffff 60%, #c8d4e0 100%);
+      max-width: 680px;
+      background: linear-gradient(120deg, #ffffff 0%, var(--glow-cyan) 55%, var(--glow-violet) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
       position: relative;
       margin-bottom: 2.5rem;
     }
+
+    .hero-accent { display: inline; }
 
     .hero-btn {
       display: inline-flex;
@@ -250,19 +277,20 @@
       transition: transform 0.35s cubic-bezier(.22,1,.36,1);
     }
     .social-link:hover svg { transform: scale(1.18) rotate(-6deg); }
-    .social-link.tiktok:hover   { border-color: rgba(255,0,80,0.6);    box-shadow: 0 8px 32px rgba(255,0,80,0.18); }
-    .social-link.facebook:hover { border-color: rgba(24,119,242,0.6);  box-shadow: 0 8px 32px rgba(24,119,242,0.18); }
-    .social-link.linkedin:hover { border-color: rgba(10,102,194,0.6);  box-shadow: 0 8px 32px rgba(10,102,194,0.18); }
-    .social-link.whatsapp:hover { border-color: rgba(37,211,102,0.6);  box-shadow: 0 8px 32px rgba(37,211,102,0.18); }
+    .social-link.tiktok:hover     { border-color: rgba(255,0,80,0.6);      box-shadow: 0 8px 32px rgba(255,0,80,0.18); }
+    .social-link.instagram:hover  { border-color: rgba(225,48,108,0.6);    box-shadow: 0 8px 32px rgba(225,48,108,0.18); }
+    .social-link.facebook:hover   { border-color: rgba(24,119,242,0.6);    box-shadow: 0 8px 32px rgba(24,119,242,0.18); }
+    .social-link.whatsapp:hover   { border-color: rgba(37,211,102,0.6);    box-shadow: 0 8px 32px rgba(37,211,102,0.18); }
+    .social-link.email:hover      { border-color: rgba(14,165,233,0.6);    box-shadow: 0 8px 32px rgba(14,165,233,0.18); }
+    .social-link.email { font-size: 0.55rem; letter-spacing: 0.04em; text-transform: none; }
 
     /* ═══════════════════════════════════════════════
        ABOUT
     ═══════════════════════════════════════════════ */
     .about {
-      padding: 7rem 1.5rem;
+      padding: 3rem 1.5rem;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
     .sparkle {
       display: inline-flex;
@@ -317,7 +345,6 @@
     .expertises {
       padding: 0 1.5rem 7rem;
       position: relative;
-      overflow: hidden;
     }
     .section-eyebrow {
       text-align: center;
@@ -330,10 +357,11 @@
     }
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
-      max-width: 1200px;
+      max-width: 960px;
       margin: 0 auto;
+      justify-content: center;
     }
     .card {
       position: relative;
@@ -421,7 +449,6 @@
     .secteurs {
       padding: 5rem 1.5rem 7rem;
       position: relative;
-      overflow: hidden;
     }
     .secteurs::before {
       content: '';
@@ -550,7 +577,7 @@
         border-bottom: 1px solid var(--glass-border);
       }
       .nav-links.open .nav-cta-mobile { display: block; margin-top: 1rem; }
-      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .cards-grid { grid-template-columns: 1fr 1fr; max-width: 640px; }
       .secteurs-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 560px) {
@@ -577,21 +604,29 @@
        AURORA ANIMATIONS
     ═══════════════════════════════════════════════ */
     @keyframes aurora-anim-1 {
-      0%,100% { transform: translateX(-50%) scale(1);    opacity: 0.9; }
-      33%     { transform: translateX(-47%) scale(1.14); opacity: 0.6; }
-      66%     { transform: translateX(-53%) scale(0.9);  opacity: 0.8; }
+      0%   { transform: translateX(-50%) translateY(0px) scale(1);     opacity: 0.9; }
+      25%  { transform: translateX(-35%) translateY(-120px) scale(1.2); opacity: 0.7; }
+      50%  { transform: translateX(-65%) translateY(80px) scale(0.85);  opacity: 0.95; }
+      75%  { transform: translateX(-42%) translateY(-60px) scale(1.15); opacity: 0.6; }
+      100% { transform: translateX(-50%) translateY(0px) scale(1);     opacity: 0.9; }
     }
     @keyframes aurora-anim-2 {
-      0%,100% { transform: scale(1);                        opacity: 0.85; }
-      50%     { transform: scale(1.3) translate(35px,20px);  opacity: 0.45; }
+      0%   { transform: translate(0px, 0px) scale(1);           opacity: 0.85; }
+      25%  { transform: translate(130px, -100px) scale(1.25);   opacity: 0.5; }
+      50%  { transform: translate(60px, 100px) scale(0.8);      opacity: 0.9; }
+      75%  { transform: translate(-80px, -50px) scale(1.15);    opacity: 0.55; }
+      100% { transform: translate(0px, 0px) scale(1);           opacity: 0.85; }
     }
     @keyframes aurora-anim-3 {
-      0%,100% { transform: scale(1);                          opacity: 0.8; }
-      50%     { transform: scale(1.25) translate(-30px,15px); opacity: 0.5; }
+      0%   { transform: translate(0px, 0px) scale(1);           opacity: 0.8; }
+      25%  { transform: translate(-120px, 90px) scale(1.2);     opacity: 0.5; }
+      50%  { transform: translate(-50px, -110px) scale(0.82);   opacity: 0.9; }
+      75%  { transform: translate(100px, 50px) scale(1.18);     opacity: 0.55; }
+      100% { transform: translate(0px, 0px) scale(1);           opacity: 0.8; }
     }
-    .aurora-1 { animation: aurora-anim-1 14s ease-in-out infinite; }
-    .aurora-2 { animation: aurora-anim-2 10s ease-in-out infinite; }
-    .aurora-3 { animation: aurora-anim-3 18s ease-in-out infinite; }
+    .aurora-1 { animation: aurora-anim-1 5s ease-in-out infinite; }
+    .aurora-2 { animation: aurora-anim-2 6s ease-in-out infinite; }
+    .aurora-3 { animation: aurora-anim-3 7s ease-in-out infinite; }
 
     /* Particle canvas (inside hero) */
     #particles-canvas {
@@ -627,6 +662,17 @@
       from { opacity: 0; transform: translateY(28px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    .hero-logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      position: relative;
+      top: -120px;
+      filter: drop-shadow(0 0 28px rgba(14,165,233,0.4)) drop-shadow(0 0 8px rgba(124,58,237,0.3));
+      animation: hero-fade-up 0.8s cubic-bezier(.22,1,.36,1) 0s both;
+    }
     .hero-surtitre { animation: hero-fade-up 0.8s cubic-bezier(.22,1,.36,1) 0.15s both; }
     .hero-title    { animation: hero-fade-up 0.9s cubic-bezier(.22,1,.36,1) 0.35s both; }
     .hero-btn      { animation: hero-fade-up 0.8s cubic-bezier(.22,1,.36,1) 0.55s both; }
@@ -653,9 +699,97 @@
       transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
     }
     .reveal-scale.active { opacity: 1; transform: scale(1); }
+
+    /* ═══════════════════════════════════════════════
+       GLOBAL CLOUD LAYER
+    ═══════════════════════════════════════════════ */
+    #clouds-global {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .cloud {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      opacity: 0.55;
+      will-change: transform;
+    }
+    .cloud-1 {
+      width: 650px; height: 650px;
+      top: -10%; left: -5%;
+      background: radial-gradient(circle, rgba(124,58,237,0.45) 0%, transparent 70%);
+      animation: cloud-drift-1 9s ease-in-out infinite;
+    }
+    .cloud-2 {
+      width: 550px; height: 550px;
+      top: -5%; right: -8%;
+      background: radial-gradient(circle, rgba(14,165,233,0.4) 0%, transparent 70%);
+      animation: cloud-drift-2 11s ease-in-out infinite;
+    }
+    .cloud-3 {
+      width: 700px; height: 700px;
+      top: 30%; left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(192,80,16,0.35) 0%, rgba(124,58,237,0.25) 55%, transparent 75%);
+      animation: cloud-drift-3 13s ease-in-out infinite;
+    }
+    .cloud-4 {
+      width: 500px; height: 500px;
+      bottom: 20%; left: -8%;
+      background: radial-gradient(circle, rgba(14,165,233,0.38) 0%, transparent 70%);
+      animation: cloud-drift-4 10s ease-in-out infinite;
+    }
+    .cloud-5 {
+      width: 500px; height: 500px;
+      bottom: 10%; right: -5%;
+      background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 70%);
+      animation: cloud-drift-5 8s ease-in-out infinite;
+    }
+
+    @keyframes cloud-drift-1 {
+      0%   { transform: translate(0, 0) scale(1); }
+      30%  { transform: translate(140px, 120px) scale(1.15); }
+      60%  { transform: translate(60px, 200px) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes cloud-drift-2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      35%  { transform: translate(-150px, 100px) scale(1.12); }
+      65%  { transform: translate(-60px, 180px) scale(0.88); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes cloud-drift-3 {
+      0%   { transform: translateX(-50%) translateY(0) scale(1); }
+      40%  { transform: translateX(-38%) translateY(-130px) scale(1.18); }
+      70%  { transform: translateX(-62%) translateY(80px) scale(0.87); }
+      100% { transform: translateX(-50%) translateY(0) scale(1); }
+    }
+    @keyframes cloud-drift-4 {
+      0%   { transform: translate(0, 0) scale(1); }
+      40%  { transform: translate(160px, -100px) scale(1.2); }
+      70%  { transform: translate(80px, -180px) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes cloud-drift-5 {
+      0%   { transform: translate(0, 0) scale(1); }
+      35%  { transform: translate(-130px, -120px) scale(1.1); }
+      65%  { transform: translate(-70px, -200px) scale(0.85); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Global cloud layer -->
+  <div id="clouds-global">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+    <div class="cloud cloud-5"></div>
+  </div>
 
   <!-- ═══════════════════════════════════════════════
        NAVBAR
@@ -679,36 +813,47 @@
     <div class="aurora aurora-2"></div>
     <div class="aurora aurora-3"></div>
 
-    <p class="hero-surtitre">VISIX</p>
-    <h1 class="hero-title">Construire des systèmes<br />digitaux puissants<br />et visibles</h1>
+    
+    <img src="IMG_1428.PNG" alt="VISIX Logo" class="hero-logo" />
+    <h1 class="hero-title">
+      Nous construisons des présences digitales<br>
+      qui attirent, engagent et développent<br>
+      votre audience en ligne.
+    </h1>
      
     </a>
 
     <!-- Social links -->
     <div class="stats-bar">
-      <a href="#" class="social-link tiktok" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.tiktok.com/@visibilix.1?_r=1&_t=ZN-96zGh0QNF4w" class="social-link tiktok" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.88a8.28 8.28 0 004.84 1.55V7a4.84 4.84 0 01-1.07-.31z"/>
         </svg>
         TikTok
       </a>
-      <a href="#" class="social-link facebook" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.instagram.com/visix.off?igsh=Yndqc3p1Zm44Mmt0&utm_source=qr" class="social-link instagram" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/share/18c6E2tzb1/?mibextid=wwXIfr" class="social-link facebook" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
         </svg>
         Facebook
       </a>
-      <a href="#" class="social-link linkedin" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-        LinkedIn
-      </a>
-      <a href="#" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/24102794116" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
         WhatsApp
+      </a>
+      <a href="mailto:Contact@visix.tech" class="social-link email">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        Contact@visix.tech
       </a>
     </div>
   </section>
@@ -746,45 +891,7 @@
     <div class="cards-grid">
 
       <!-- Card 01 -->
-      <div class="card card-1" data-delay="0">
-        <div class="card-glow"></div>
-        <div class="card-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/>
-            <path d="M8 21h8M12 17v4"/>
-            <path d="M7 10l2 2 4-4"/>
-          </svg>
-        </div>
-        <h3 class="card-heading">Développement Technologique</h3>
-        <p class="card-text">Solutions robustes et scalables. Applications web, plateformes SaaS, outils métiers sur mesure, architectures backend et cloud.</p>
-        <span class="card-num">01</span>
-        <!-- Crystal shape -->
-        <svg class="card-crystal" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="60,10 110,45 95,100 25,100 10,45" stroke="white" stroke-width="1" fill="rgba(255,255,255,0.04)"/>
-          <polygon points="60,25 95,52 83,88 37,88 25,52" stroke="white" stroke-width="0.6" fill="none" opacity="0.6"/>
-        </svg>
-      </div>
 
-      <!-- Card 02 -->
-      <div class="card card-2" data-delay="120">
-        <div class="card-glow"></div>
-        <div class="card-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M2 20c0-4 4-7 10-7s10 3 10 7"/>
-            <path d="M17 8l2 2-2 2"/>
-          </svg>
-        </div>
-        <h3 class="card-heading">Branding &amp; Expérience Utilisateur</h3>
-        <p class="card-text">Identités fortes et expériences centrées utilisateur. Logotype, charte graphique, UX/UI Design, prototypage et maquettes interactives.</p>
-        <span class="card-num">02</span>
-        <svg class="card-crystal" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="60,8 112,40 112,80 60,112 8,80 8,40" stroke="white" stroke-width="1" fill="rgba(255,255,255,0.04)"/>
-          <polygon points="60,22 98,46 98,74 60,98 22,74 22,46" stroke="white" stroke-width="0.6" fill="none" opacity="0.6"/>
-        </svg>
-      </div>
-
-      <!-- Card 03 -->
       <div class="card card-3" data-delay="240">
         <div class="card-glow"></div>
         <div class="card-icon-wrap">
@@ -801,6 +908,29 @@
           <line x1="15" y1="60" x2="105" y2="60" stroke="white" stroke-width="0.4" opacity="0.5"/>
         </svg>
       </div>
+
+      <div class="card card-1" data-delay="0">
+        <div class="card-glow"></div>
+        <div class="card-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+            <path d="M7 10l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="card-heading">Développement Technologique</h3>
+        <p class="card-text">Sites internet et applications mobiles sur mesure, rapides, modernes et adaptés à vos besoins.</p>
+        <span class="card-num">01</span>
+        <!-- Crystal shape -->
+        <svg class="card-crystal" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="60,10 110,45 95,100 25,100 10,45" stroke="white" stroke-width="1" fill="rgba(255,255,255,0.04)"/>
+          <polygon points="60,25 95,52 83,88 37,88 25,52" stroke="white" stroke-width="0.6" fill="none" opacity="0.6"/>
+        </svg>
+      </div>
+
+      
+      <!-- Card 03 -->
+      
 
       <!-- Card 04 -->
       <div class="card card-4" data-delay="360">
