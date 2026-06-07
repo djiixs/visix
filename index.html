@@ -30,14 +30,22 @@
       --font: 'Plus Jakarta Sans', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      max-width: 100%;
+      overscroll-behavior-x: none;
+    }
 
     body {
       font-family: var(--font);
       background: var(--bg-deep);
       color: var(--text-white);
       overflow-x: hidden;
+      max-width: 100%;
       min-height: 100vh;
+      overscroll-behavior-x: none;
+      touch-action: pan-y;
     }
 
     /* ═══════════════════════════════════════════════
